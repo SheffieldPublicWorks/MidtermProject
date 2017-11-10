@@ -74,6 +74,10 @@ namespace MidtermProject
             ShoppingCart.GetFormattedGrandTotal(cart.GetTotal());//Gets the grand total, which is the overall total and times it by the sales tax (.06)
             ShoppingCart.Payment(ShoppingCart.GetGrandTotal(cart.GetTotal()));//
             Console.WriteLine();
+
+            
+            
+
             Console.WriteLine("*======*======*======*======*======*======*======*======**======*======*======*======*======*======*======*======*");
             Console.WriteLine("Thank you for shopping at JorStevIam Holladay Service! Packages will arrive between 10 - 14 business days.");
             Console.WriteLine("*======*======*======*======*======*======*======*======**======*======*======*======*======*======*======*======*");

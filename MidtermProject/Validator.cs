@@ -103,12 +103,7 @@ namespace MidtermProject
         public static bool Mod10Check()
         {
 
-
-<<<<<<< HEAD
-            //Console.WriteLine("Enter your credit card number\n");
-=======
             Console.WriteLine("Enter your credit card information:\n");
->>>>>>> 3c64a7b9ba0b86e41d7ac844ac27bd3660636ebb
 
             Console.Write("Enter you credit card number: ");
 
@@ -207,11 +202,7 @@ namespace MidtermProject
                     else
                     {
                         Console.WriteLine("Transaction declined. Have a nice day.");
-<<<<<<< HEAD
-                        return Mod10Check();
-=======
                         return false;
->>>>>>> 3c64a7b9ba0b86e41d7ac844ac27bd3660636ebb
                     }
                     
                 }
