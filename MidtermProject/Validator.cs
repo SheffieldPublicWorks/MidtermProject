@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace MidtermProject
 {
@@ -23,7 +24,7 @@ namespace MidtermProject
 
             }
 
-            else if (selection > 16 || selection < 1)
+            else if (selection > 17 || selection < 1)
             {
                 Console.Write("That is not one of our products! ");
                 return GetValidSelection();
@@ -32,7 +33,93 @@ namespace MidtermProject
             return selection;
         }
 
-       
+        public static int GetValidSelection1()
+        {
+
+            Console.Write("Please pick what number you would like to order: ");
+            bool success = int.TryParse(Console.ReadLine(), out int selection);
+
+            if (!success)
+            {
+                Console.WriteLine("Please enter a valid number from the list!");
+                return GetValidSelection();
+
+            }
+
+            else if (selection > 4 || selection < 1)
+            {
+                Console.WriteLine("That is not one of our products! ");
+                return GetValidSelection1();
+            }
+
+            return selection;
+        }
+
+        public static int GetValidSelection2()
+        {
+
+            Console.Write("Please pick what number you would like to order: ");
+            bool success = int.TryParse(Console.ReadLine(), out int selection);
+
+            if (!success)
+            {
+                Console.WriteLine("Please enter a valid number from the list!");
+                return GetValidSelection();
+
+            }
+
+            else if (selection > 8 || selection < 5)
+            {
+                Console.Write("That is not one of our products! ");
+                return GetValidSelection2();
+            }
+
+            return selection;
+        }
+
+        public static int GetValidSelection3()
+        {
+
+            Console.Write("Please pick what number you would like to order: ");
+            bool success = int.TryParse(Console.ReadLine(), out int selection);
+
+            if (!success)
+            {
+                Console.WriteLine("Please enter a valid number from the list!");
+                return GetValidSelection();
+
+            }
+
+            else if (selection > 12 || selection < 9)
+            {
+                Console.Write("That is not one of our products! ");
+                return GetValidSelection3();
+            }
+
+            return selection;
+        }
+
+        public static int GetValidSelection4()
+        {
+
+            Console.Write("Please pick what number you would like to order: ");
+            bool success = int.TryParse(Console.ReadLine(), out int selection);
+
+            if (!success)
+            {
+                Console.WriteLine("Please enter a valid number from the list!");
+                return GetValidSelection();
+
+            }
+
+            else if (selection > 17 || selection < 13)
+            {
+                Console.Write("That is not one of our products! ");
+                return GetValidSelection4();
+            }
+
+            return selection;
+        }
 
         public static int GetQuantity(int selection, ArrayList menu)
         {
@@ -70,8 +157,6 @@ namespace MidtermProject
 
             
         }
-
-
 
         public static bool YesNo()
         {
@@ -122,7 +207,7 @@ namespace MidtermProject
 
             while (true)
             {
-                Console.Write("Enter the 2 digit expiration MONTH of your credit card:  \n");
+                Console.Write("Enter the 2 digit expiration MONTH of your credit card:  ");
                 string expMonth = Console.ReadLine().Trim();
                 int validMonth = 0;
                 bool success = false;
@@ -149,7 +234,7 @@ namespace MidtermProject
 
             while (true)
             {
-                Console.Write("Now enter the 2 digit expiration YEAR of your credit card:  \n");
+                Console.Write("Now enter the 2 digit expiration YEAR of your credit card:  ");
                 string expYear = Console.ReadLine().Trim();
                 int validYear = 0;
                 bool success2 = false;
@@ -177,7 +262,7 @@ namespace MidtermProject
             bool success3 = false;
             while (true)
             {
-                Console.Write("Enter the 3 digit CVV code on the back of the card:");
+                Console.Write("Enter the 3 digit CVV code on the back of the card: ");
                 string cvv = Console.ReadLine().Trim();
 
                 success3 = int.TryParse(cvv, out validCvv);
@@ -193,10 +278,17 @@ namespace MidtermProject
 
                 else
                 {
+                    Console.Write("Processing");
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Thread.Sleep(750);
+                        Console.Write(".");
+                    }
+
                     const int ExclusiveUpperBound = 2;
                     if (new Random().Next(ExclusiveUpperBound) == 0)
                     {
-                        Console.WriteLine("You transaction was a success! Thank you for shopping with us");
+                        Console.WriteLine("You transaction was a success! Thank you for shopping with us!\n");
                         break;
                     }
                     else

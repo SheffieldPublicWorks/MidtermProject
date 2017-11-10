@@ -50,5 +50,16 @@ namespace MidtermProject
             return menu;
         }
 
+        public static void AddInventory(string filename, ArrayList Menu)
+        {
+            string input = Console.ReadLine();
+            using (StreamWriter menuAdd = File.AppendText(filename))
+            {
+                menuAdd.WriteLine(input);
+
+            }
+
+        }
+
     }
 }
