@@ -10,94 +10,6 @@ namespace MidtermProject
     class Validator
     {
 
-        public static int GetValidSelection1()
-        {
-
-            Console.Write("Please pick what number you would like to order: ");
-            bool success = int.TryParse(Console.ReadLine(), out int selection);
-
-            if (!success)
-            {
-                Console.WriteLine("Please enter a valid number from the list!");
-                return GetValidSelection1();
-
-            }
-
-            else if (selection >= 4 || selection < 1)
-            {
-                Console.Write("That is not one of our products! ");
-                return GetValidSelection1();
-            }
-
-            return selection;
-        }
-
-        public static int GetValidSelection2()
-        {
-
-            Console.Write("Please pick what number you would like to order: ");
-            bool success = int.TryParse(Console.ReadLine(), out int selection);
-
-            if (!success)
-            {
-                Console.WriteLine("Please enter a valid number from the list!");
-                return GetValidSelection2();
-
-            }
-
-            else if (selection >= 8 || selection < 4)
-            {
-                Console.Write("That is not one of our products! ");
-                return GetValidSelection2();
-            }
-
-            return selection;
-        }
-
-        public static int GetValidSelection3()
-        {
-
-            Console.Write("Please pick what number you would like to order: ");
-            bool success = int.TryParse(Console.ReadLine(), out int selection);
-
-            if (!success)
-            {
-                Console.WriteLine("Please enter a valid number from the list!");
-                return GetValidSelection3();
-
-            }
-
-            else if (selection >= 12 || selection < 8)
-            {
-                Console.Write("That is not one of our products! ");
-                return GetValidSelection3();
-            }
-
-            return selection;
-        }
-
-        public static int GetValidSelection4()
-        {
-
-            Console.Write("Please pick what number you would like to order: ");
-            bool success = int.TryParse(Console.ReadLine(), out int selection);
-
-            if (!success)
-            {
-                Console.WriteLine("Please enter a valid number from the list!");
-                return GetValidSelection4();
-
-            }
-
-            else if (selection >= 16 || selection < 12)
-            {
-                Console.Write("That is not one of our products! ");
-                return GetValidSelection4();
-            }
-
-            return selection;
-        }
-
         public static int GetValidSelection()
         {
 
@@ -120,27 +32,7 @@ namespace MidtermProject
             return selection;
         }
 
-        public static int GetValidCategory()
-        {
-          
-
-            bool success = int.TryParse(Console.ReadLine(), out int selection);
-
-            if (!success)
-            {
-                Console.WriteLine("Please enter a valid number from the list!");
-                return GetValidCategory();
-
-            }
-
-            else if (selection > 5 || selection < 1)
-            {
-                Console.Write("That is not a category on the list! ");
-                return GetValidCategory();
-            }
-
-            return selection;
-        }
+       
 
         public static int GetQuantity(int selection, ArrayList menu)
         {
