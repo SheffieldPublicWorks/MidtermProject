@@ -15,6 +15,7 @@ namespace MidtermProject
         static void Main(string[] args)
         {
             ShoppingCart cart = new ShoppingCart();
+
             ArrayList menu = GetInventory.CurrentInventory(FILENAME);
             Console.WriteLine("                                  Welcome JorStevIam.com Delivery Holladay Service! ");
             Console.WriteLine("                                  JorStevIam, where we put the \'Holla\' in \'Holladay\' ");
@@ -30,6 +31,7 @@ namespace MidtermProject
                 Console.WriteLine();
                 Console.WriteLine(menu[newSelection]);
                 Console.WriteLine();
+
                 Product choice = (Product)menu[newSelection];//Allows to access the variables inside the textfile, which is held in the arraylist.
 
                 int userQuantity = Validator.GetQuantity(newSelection, menu);// Checks user quantity for in stock
