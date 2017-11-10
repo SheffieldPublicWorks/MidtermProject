@@ -10,26 +10,133 @@ namespace MidtermProject
     class Validator
     {
 
+        public static int GetValidSelection1()
+        {
+
+            Console.Write("Please pick what number you would like to order: ");
+            bool success = int.TryParse(Console.ReadLine(), out int selection);
+
+            if (!success)
+            {
+                Console.WriteLine("Please enter a valid number from the list!");
+                return GetValidSelection1();
+
+            }
+
+            else if (selection >= 4 || selection < 1)
+            {
+                Console.Write("That is not one of our products! ");
+                return GetValidSelection1();
+            }
+
+            return selection;
+        }
+
+        public static int GetValidSelection2()
+        {
+
+            Console.Write("Please pick what number you would like to order: ");
+            bool success = int.TryParse(Console.ReadLine(), out int selection);
+
+            if (!success)
+            {
+                Console.WriteLine("Please enter a valid number from the list!");
+                return GetValidSelection2();
+
+            }
+
+            else if (selection >= 8 || selection < 4)
+            {
+                Console.Write("That is not one of our products! ");
+                return GetValidSelection2();
+            }
+
+            return selection;
+        }
+
+        public static int GetValidSelection3()
+        {
+
+            Console.Write("Please pick what number you would like to order: ");
+            bool success = int.TryParse(Console.ReadLine(), out int selection);
+
+            if (!success)
+            {
+                Console.WriteLine("Please enter a valid number from the list!");
+                return GetValidSelection3();
+
+            }
+
+            else if (selection >= 12 || selection < 8)
+            {
+                Console.Write("That is not one of our products! ");
+                return GetValidSelection3();
+            }
+
+            return selection;
+        }
+
+        public static int GetValidSelection4()
+        {
+
+            Console.Write("Please pick what number you would like to order: ");
+            bool success = int.TryParse(Console.ReadLine(), out int selection);
+
+            if (!success)
+            {
+                Console.WriteLine("Please enter a valid number from the list!");
+                return GetValidSelection4();
+
+            }
+
+            else if (selection >= 16 || selection < 12)
+            {
+                Console.Write("That is not one of our products! ");
+                return GetValidSelection4();
+            }
+
+            return selection;
+        }
+
         public static int GetValidSelection()
         {
 
             Console.Write("Please pick what number you would like to order: ");
             bool success = int.TryParse(Console.ReadLine(), out int selection);
 
-
-
-
             if (!success)
             {
-                Console.WriteLine("Please enter a valid number from the list!" );
+                Console.WriteLine("Please enter a valid number from the list!");
                 return GetValidSelection();
 
             }
-            
-            else if (selection > 12 || selection < 1)
+
+            else if (selection > 16 || selection < 1)
             {
                 Console.Write("That is not one of our products! ");
                 return GetValidSelection();
+            }
+
+            return selection;
+        }
+
+        public static int GetValidCategory()
+        {
+          
+
+            bool success = int.TryParse(Console.ReadLine(), out int selection);
+
+            if (!success)
+            {
+                Console.WriteLine("Please enter a valid number from the list!");
+                return GetValidCategory();
+
+            }
+
+            else if (selection > 5 || selection < 1)
+            {
+                Console.Write("That is not a category on the list! ");
+                return GetValidCategory();
             }
 
             return selection;
@@ -98,7 +205,7 @@ namespace MidtermProject
         {
 
 
-            Console.WriteLine("Enter your credit card number\n");
+            //Console.WriteLine("Enter your credit card number\n");
 
             Console.Write("Enter you credit card number: ");
 
@@ -186,26 +293,29 @@ namespace MidtermProject
                     Console.WriteLine("The code is not valid. It should have 3 digits: ");
                 }
 
-               else
+                else
                 {
                     const int ExclusiveUpperBound = 2;
                     if (new Random().Next(ExclusiveUpperBound) == 0)
                     {
                         Console.WriteLine("You transaction was a success! Thank you for shopping with us");
+                        break;
                     }
                     else
                     {
                         Console.WriteLine("Transaction declined. Have a nice day.");
+                        return Mod10Check();
                     }
-                    break;
+                    
                 }
-                          
+
             }
             return false;
 
+
         }
 
-         //return sumOfDigits % 10 == 0;
+        //return sumOfDigits % 10 == 0;
         public static int GetValidBankAccount()
         {
             bool success = false;
@@ -238,33 +348,16 @@ namespace MidtermProject
             return validBa;
         }
 
-       /* public static Double GetValidCash()
+        public static void GetValidCash(double grandTotal)
         {
-            bool success = false;
-            double validCash = 0;
-            while (!success)
-            {
-                Console.WriteLine("Enter the denomination of the cash you are paying with (e.g. $10, $20, $50) :");
-                string denomination = Console.ReadLine().Trim();
-                success = !Convert.ToDouble(denomination, out validCash);
+            Console.WriteLine();
+            Console.WriteLine("This is an online store... How and why pay with cash...?\nWell, you are the customer and we want your money.");
+            Console.Write($"Please jam {grandTotal:C} through the computer: ");
+            string input = Console.ReadLine();
+            double.TryParse(input, out double payment);
+            double change = payment - grandTotal;
 
-                if (string.IsNullOrEmpty(denomination))
-                {
-                    Console.WriteLine("The bank account you entered was not valid. Please try again: ");
-                    success = false;
-
-                }
-
-                else if (validCash < )
-                {
-                   
-                }
-
-
-            }
-            return validCash;*/
-
-
-
+            Console.Write($"We won't give you a reciept beacuse this is an online store, but here is your change: {change:C}\n");
         }
+    }
 }

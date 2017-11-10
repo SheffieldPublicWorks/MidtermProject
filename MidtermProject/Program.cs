@@ -15,27 +15,24 @@ namespace MidtermProject
         static void Main(string[] args)
         {
             ShoppingCart cart = new ShoppingCart();
-            ArrayList menu = ShoppingCart.CurrentInventory(FILENAME);
-            Console.WriteLine("                   Welcome to our delivery food service! ");
+            ArrayList menu = GetInventory.CurrentInventory(FILENAME);
+            Console.WriteLine("                                  Welcome JorStevIam.com Delivery Holladay Service! ");
+            Console.WriteLine("                                  JorStevIam, where we put the \'Holla\' in \'Holladay\' ");
+            Console.WriteLine();
 
             bool repeat = true;
             while (repeat)
             {
-                Console.WriteLine("                  Here is what we have in stock right now! ");
-                Console.WriteLine(new string('+', 105)); //footer
-                for (int i = 0; i < menu.Count; i++)
-                {
-                    Console.WriteLine($"{i}:{menu[i]}");
-                }
-                Console.WriteLine(new string('+', 105)); //footer
+                SearchMethod(menu);//Asks the user to search by category
 
                 int selection = Validator.GetValidSelection();//Make sure the number is on the list
+                int newSelection = selection - 1;
                 Console.WriteLine();
-                Console.WriteLine(menu[selection]);
+                Console.WriteLine(menu[newSelection]);
                 Console.WriteLine();
-                Product choice = (Product)menu[selection];//Allows to access the variables inside the textfile, which is held in the arraylist.
+                Product choice = (Product)menu[newSelection];//Allows to access the variables inside the textfile, which is held in the arraylist.
 
-                int userQuantity = Validator.GetQuantity(selection, menu);// Checks user quantity for in stock
+                int userQuantity = Validator.GetQuantity(newSelection, menu);// Checks user quantity for in stock
 
 
                 Console.Write($"Would you like to add {userQuantity} {choice.Name} {choice.Category} boxes to your cart? (Y/N): ");
@@ -44,7 +41,7 @@ namespace MidtermProject
                 if (addCart == true)
                 {
                     Console.WriteLine("Added to cart!");
-                    ShoppingCart.AddtoCart(cart, (Product)menu[selection], userQuantity);//Adds to the cart and adds the quantity
+                    ShoppingCart.AddtoCart(cart, (Product)menu[newSelection], userQuantity);//Adds to the cart and adds the quantity
                 }
                 else
                 {
@@ -67,37 +64,102 @@ namespace MidtermProject
 
             Console.WriteLine("Proceeding to checkout.... ");
             Console.WriteLine("Here is your cart!");
-            Console.WriteLine();
+            Console.WriteLine("ItemName\t\tCategory\tPrice\tQuantity");
+            Console.WriteLine("*======*======*======*======*======*======*======*======*");
             ShoppingCart.GetCart(cart);
-
+            Console.WriteLine("*======*======*======*======*======*======*======*======*");
+            ShoppingCart.GetFormattedSalesTax(cart.GetTotal());//Gets the total. Times it by the quantity and the prices inside the cart.
+            ShoppingCart.GetFormattedGrandTotal(cart.GetTotal());//Gets the grand total, which is the overall total and times it by the sales tax (.06)
+            ShoppingCart.Payment(ShoppingCart.GetGrandTotal(cart.GetTotal()));//
             Console.WriteLine();
-            //ShoppingCart.GetFormattedTotal();
+            Console.WriteLine("*======*======*======*======*======*======*======*======**======*======*======*======*======*======*======*======*");
+            Console.WriteLine("Thank you for shopping at JorStevIam Holladay Service! Packages will arrive between 10 - 14 business days.");
+            Console.WriteLine("*======*======*======*======*======*======*======*======**======*======*======*======*======*======*======*======*");
+
+            cart.UpdateInventory(menu);
+        }
+
+        private static int SearchMethod(ArrayList menu)
+        {
+            Console.WriteLine("Here are our current ways to search!\n1.)Christmas\n2.)Valentines\n3.)Thanksgiving\n4.)FourthOfJuly\n5.)Everything ");
+            Console.Write("Please enter the number for what option you would like: ");
+            string option = Console.ReadLine().ToLower().Trim();
+            //Console.Write("Please pick what number you would like to order: ");
             Console.WriteLine();
-
-            Console.WriteLine("Here are our current payment methods:\n1.)Cash\n2.)Check\n3.)Credit");
-            Console.Write("Please enter how you would like to pay: ");
-            string payment = Console.ReadLine().ToLower();
+            int newselection = 0;
+            //bool success = int.TryParse(input, out int option);
 
 
-            if (payment == "1" || payment == "cash")
+            if (option == "1" || option == "christmas")
             {
-                Console.Write($"You're total is {0}. \nPlease enter how much you are paying with: ");
-                double.TryParse(Console.ReadLine(), out double change);
-                Console.WriteLine($"Your change is {0}");
+                Console.BackgroundColor = ConsoleColor.DarkRed;
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("                                 You chose to search by Christmas! ");
+                Console.WriteLine(new string('+', 105)); //footer
+                for (int i = 0; i <= 3; i++)
+                {
+                    Console.WriteLine($"{i + 1}:{menu[i]}");
+                }
+                Console.WriteLine(new string('+', 105)); //footer
+
+                int selection = Validator.GetValidSelection();//Make sure the number is on the list
+                int newSelection = selection - 1;
             }
-            else if (payment == "2" || payment == "check")
+            else if (option == "2" || option == "valentines")
             {
-                Console.Write("Please enter in your check number: ");
-                int.TryParse(Console.ReadLine(), out int check);
+                Console.BackgroundColor = ConsoleColor.DarkRed;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("                                 You chose to search by Valentines! ");
+                Console.WriteLine(new string('+', 105)); //footer
+                for (int i = 4; i <= 7; i++)
+                {
+                    Console.WriteLine($"{i + 1}:{menu[i]}");
+                }
+                Console.WriteLine(new string('+', 105)); //footer
             }
-            else if (payment == "3" || payment == "credit")
+            else if (option == "3" || option == "thanksgiving")
             {
-                Console.WriteLine(Validator.Mod10Check());
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("                                 You chose to search by Thanksgiving! ");
+                Console.WriteLine(new string('+', 105)); //footer
+                for (int i = 8; i <= 11; i++)
+                {
+                    Console.WriteLine($"{i + 1, -3}:{menu[i]}");
+                }
+                Console.WriteLine(new string('+', 105)); //footer
+            }
+            else if (option == "4" || option == "fourthofjuly")
+            {
+                Console.BackgroundColor = ConsoleColor.Blue;
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("                                 You chose to search by FourthOfJuly! ");
+                Console.WriteLine(new string('+', 105)); //footer
+                for (int i = 12; i < 16; i++)
+                {
+                    Console.WriteLine($"{i + 1, -3}:{menu[i]}");
+                }
+                Console.WriteLine(new string('+', 105)); //footer
+            }
+            else if (option == "5" || option == "everything")
+            {
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("                                 You chose to search by everything! ");
+                Console.WriteLine(new string('+', 105)); //footer
+                for (int i = 0; i < menu.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1, -3}:{menu[i]}");
+                }
+                Console.WriteLine(new string('+', 105)); //footer
+            }
+            else
+            {
+                Console.WriteLine("Please pick from the options listed above! ");
+                SearchMethod(menu);
             }
 
-            //Console.WriteLine("Would you like to checkout? (Y/N)");
-            //bool checkOut = Validator.YesNo();
-            // Console.WriteLine(Validator.Mod10Check());
+            return newselection;
         }
     }
 }
